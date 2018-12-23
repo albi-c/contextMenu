@@ -2,7 +2,7 @@
 
 Simple way to create custom context menus
 
-## How to use?
+## How to use:
 
 HTML:
 ```html
