@@ -6,20 +6,21 @@ function sanitize_string(str, san) {
 }
 
 class ContextMenu {
-	constructor(items, on_menu_clicked, menu_container=document.body, sanitize_strings=true) {
+	constructor(items, on_menu_clicked, menu_container=document.body, sanitize_strings=true, dark=false) {
 		this.items = items;
 		this.on_menu_clicked = on_menu_clicked;
 		this.menu_container = menu_container;
 		this.sanitize_strings = sanitize_strings;
+		this.dark = dark;
 		this.menu = document.createElement("div");
 		this.menupos = {x: 0, y: 0};
-		this.menu.classList.add("cm_menu");
+		this.menu.classList.add(!this.dark ? "cm_menu" : "cmd_menu");
 		this.elements = [];
 		this.elements.push(document.createElement("span"));
 		for (let i = 0; i < this.items.length; i++) {
 			if (items[i] === "---") {
 				let tmp = document.createElement("hr");
-				tmp.classList.add("cm_separator");
+				tmp.classList.add(!this.dark ? "cm_separator" : "cmd_separator");
 				this.elements.push(tmp);
 			} else {
 				if (this.elements[this.elements.length-1].tagName === "UL") {
@@ -28,18 +29,18 @@ class ContextMenu {
 						this.on_menu_clicked(e.target.innerHTML);
 					});
 					tmp.innerHTML = sanitize_string(this.items[i], this.sanitize_strings);
-					tmp.classList.add("cm_item");
+					tmp.classList.add(!this.dark ? "cm_item" : "cmd_item");
 					this.elements[this.elements.length-1].appendChild(tmp);
 				} else {
 					let tmp = document.createElement("ul");
-					tmp.classList.add("cm_ulist");
+					tmp.classList.add(!this.dark ? "cm_ulist" : "cmd_ulist");
 					this.elements.push(tmp);
 					tmp = document.createElement("li");
 					tmp.addEventListener("click", (e) => {
 						this.on_menu_clicked(e.target.innerHTML);
 					});
 					tmp.innerHTML = sanitize_string(this.items[i], this.sanitize_strings);
-					tmp.classList.add("cm_item");
+					tmp.classList.add(!this.dark ? "cm_item" : "cmd_item");
 					this.elements[this.elements.length-1].appendChild(tmp);
 				}
 			}
@@ -50,7 +51,6 @@ class ContextMenu {
 		this.menu_container.appendChild(this.menu);
 		document.addEventListener("click", (e) => {
 			this.hide(e);
-			console.log(this.hide);
 		});
 	}
 	show(e) {
@@ -67,8 +67,6 @@ class ContextMenu {
 	bind(el) {
 		el.addEventListener("contextmenu", (e) => {
 			this.show(e);
-			console.log(this.show);
 		});
 	}
 }
-
