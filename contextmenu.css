@@ -1,0 +1,35 @@
+.cm_menu {
+	display: none;
+	position: fixed;
+	border: 1px solid #B2B2B2;
+	width: 150px;
+	background: #F9F9F9;
+	border-radius: 4px;
+}
+.cm_separator {
+	width: 85%; 
+	background-color: #E4E4E4;
+	border-color: #E4E4E4;
+	color: #E4E4E4;
+}
+.cm_ulist {
+	list-style: none;
+	margin: 0px;
+	margin-top: 4px;
+	padding-left: 10px;
+	padding-right: 10px;
+	padding-bottom: 3px;
+	font-size: 17px;
+	color: #333333;
+}
+.cm_item {
+	padding: 3px;
+	padding-left: 10px;
+}
+.cm_item:hover {
+	padding: 3px;
+	padding-left: 10px;
+	background-color: #284570;
+	color: white;
+}
+
